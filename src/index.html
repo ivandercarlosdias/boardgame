@@ -11,9 +11,9 @@
 <body x-data="app">
 
    <div class="flex justify-center items-center">
-      <div :class="`grid grid-cols-${boardSize} gap-1`" :style="{ width: boardSize * 4 + 'rem', height: boardSize * 4 + 'rem' }">
-         <template x-for="(cell, index) in Array(boardSize * boardSize).fill()" :key="index">
-            <div class="board__cell"></div>
+      <div x-bind:class="`grid grid-cols-${boardSize} gap-1`" x-bind:style="{ width: boardSize * 4 + 'rem', height: boardSize * 4 + 'rem' }">
+         <template x-for="(value, index) in Array.from({ length: boardSize * boardSize })" :key="index">
+            <div class="board__cell" x-bind:class="getBoardCellClasses(index)"></div>
          </template>
       </div>
    </div>
