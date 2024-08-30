@@ -1,6 +1,6 @@
 class BoardGame {
-   constructor() {
-      console.log('Init BoardGame')
+   constructor(boardSize = 6) {
+      this.boardSize = boardSize
    }
 }
 

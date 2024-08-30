@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-   @apply bg-gradient-to-r from-[#ECE9E6] to-white;
+   @apply flex flex-col gap-4 justify-center items-center h-screen bg-gradient-to-r from-gray-100 to-white;
+}
+
+.board__cell {
+   @apply relative flex justify-center items-center w-full h-full bg-white border-2 border-gray-300;
 }
