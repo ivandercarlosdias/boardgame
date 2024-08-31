@@ -9,3 +9,23 @@ body {
 .board__cell {
    @apply relative flex justify-center items-center w-full h-full bg-white border-2 border-gray-300;
 }
+
+.player {
+   @apply before:block before:absolute before:content-[''] before:w-4 before:h-4 before:rounded-full;
+}
+
+.player-1 {
+   @apply player before:bg-red-500;
+}
+
+.player-1-target {
+   @apply player before:bg-red-200;
+}
+
+.player-2 {
+   @apply player before:bg-blue-500;
+}
+
+.player-2-target {
+   @apply player before:bg-blue-200;
+}

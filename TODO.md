@@ -1,8 +1,7 @@
 # Todo
 
 -  [x] Basic files
--  [ ] Basic design & Assets
--  [ ] Boardgame class list all methods
+-  [ ] How tailwind render dynamic class grid-cols-${boardSize}
 
 # Backlog
 

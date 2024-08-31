@@ -11,10 +11,24 @@
 <body x-data="app">
 
    <div class="flex justify-center items-center">
-      <div x-bind:class="`grid grid-cols-${boardSize} gap-1`" x-bind:style="{ width: boardSize * 4 + 'rem', height: boardSize * 4 + 'rem' }">
+      <div x-bind:class="`grid grid-cols-6 gap-1`" x-bind:style="{ width: boardSize * 4 + 'rem', height: boardSize * 4 + 'rem' }">
          <template x-for="(value, index) in Array.from({ length: boardSize * boardSize })" :key="index">
-            <div class="board__cell" x-bind:class="getBoardCellClasses(index)"></div>
+            <div class="board__cell" x-bind:class="handleBoardCellClasses(index)"></div>
          </template>
+      </div>
+   </div>
+
+   <!-- Temp -->
+   <div class="flex items-center justify-center gap-8" x-data="{ playerIndex: 0 }">
+      <div class="flex flex-col items-center gap-2">
+         <button x-on:click="playerIndex = 0" class="bg-red-500 pointer rounded-full" x-bind:class="playerIndex === 0 ? 'w-6 h-6' : 'w-5 h-5'"></button>
+         <button x-on:click="playerIndex = 1" class="bg-blue-500 pointer rounded-full" x-bind:class="playerIndex === 1 ? 'w-6 h-6' : 'w-5 h-5'"></button>
+      </div>
+      <div class="flex gap-2">
+         <button class="flex items-center justify-center w-8 h-8 text-white bg-slate-400 hover:bg-slate-600 rounded-full shadow-md" x-on:click="movePlayer(playerIndex, 'left')">←</button>
+         <button class="flex items-center justify-center w-8 h-8 text-white bg-slate-400 hover:bg-slate-600 rounded-full shadow-md" x-on:click="movePlayer(playerIndex, 'up')">↑</button>
+         <button class="flex items-center justify-center w-8 h-8 text-white bg-slate-400 hover:bg-slate-600 rounded-full shadow-md" x-on:click="movePlayer(playerIndex, 'right')">→</button>
+         <button class="flex items-center justify-center w-8 h-8 text-white bg-slate-400 hover:bg-slate-600 rounded-full shadow-md" x-on:click="movePlayer(playerIndex, 'down')">↓</button>
       </div>
    </div>
    
