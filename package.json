@@ -4,7 +4,9 @@
    "description": "O BoardGame é um jogo de tabuleiro online multiplayer jogado através do navegador em tempo real. O objetivo é mover pinos em um tabuleiro usando cartas que indicam direções. O jogo termina quando um pino atinge seu objetivo.",
    "main": "src/index.html",
    "scripts": {
-      "assets": "npx tailwindcss -i ./src/css/styles.css -o ./src/css/styles.min.css --minify --watch",
+      "css": "npx tailwindcss -i ./src/css/styles.css -o ./src/css/styles.min.css --minify",
+      "css-watch": "npx tailwindcss -i ./src/css/styles.css -o ./src/css/styles.min.css --minify --watch",
+      "assets": "npm run css",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
    "keywords": [],

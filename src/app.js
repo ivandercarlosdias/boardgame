@@ -1,19 +1,32 @@
 class BoardGame {
-   constructor(boardSize = 6) {
-      this.boardSize = boardSize
+   constructor() {
+      this.boardSize = 6
 
       this.players = [
          {
             name: 'Jogador 1',
             position: 0,
-            targetPosition: boardSize - 1,
+            targetPosition: this.boardSize - 1,
          },
          {
             name: 'Jogador 2',
-            position: boardSize * boardSize - 1,
-            targetPosition: boardSize * (boardSize - 1),
+            position: this.boardSize * this.boardSize - 1,
+            targetPosition: this.boardSize * (this.boardSize - 1),
          },
       ]
+
+      this.boardWalls = {
+         2: ['left'],
+         4: ['left'],
+         7: ['down', 'left'],
+         9: ['down'],
+         15: ['left'],
+         17: ['down'],
+         19: ['up', 'right'],
+         21: ['left'],
+         28: ['up', 'right'],
+         31: ['left'],
+      }
    }
 
    handleBoardCellClasses(index) {
@@ -21,11 +34,17 @@ class BoardGame {
 
       this.players.forEach((player, i) => {
          if (index === player.position) {
-            classes += ` player-${i + 1}`
+            classes += ` player--${i + 1}`
          } else if (index === player.targetPosition) {
-            classes += ` player-${i + 1}-target`
+            classes += ` player-target--${i + 1}`
          }
       })
+
+      if (this.boardWalls[index]) {
+         this.boardWalls[index].forEach((direction) => {
+            classes += ` board-wall--${direction}`
+         })
+      }
 
       return classes
    }
@@ -39,7 +58,15 @@ class BoardGame {
          return
       }
 
-      if (this.isPlayerInPosition(playerIndex, newPosition)) {
+      if (
+         this.hasWall(currentPlayer.position, direction) ||
+         this.hasWall(newPosition, this.getReverseDiretion(direction))
+      ) {
+         console.error('Movimento bloqueado por um obstáculo.')
+         return
+      }
+
+      if (this.hasPlayerInPosition(playerIndex, newPosition)) {
          console.error('Movimento não é possível. A posição está ocupada por outro jogador.')
          return
       }
@@ -51,21 +78,37 @@ class BoardGame {
       }
    }
 
-   isPlayerInPosition(playerIndex, newPosition) {
+   hasWall(position, direction) {
+      const boardCellWalls = this.boardWalls[position] || []
+      return boardCellWalls.includes(direction)
+   }
+
+   hasPlayerInPosition(playerIndex, newPosition) {
       return this.players.some((player, index) => index !== playerIndex && player.position === newPosition)
    }
 
-   getPlayerNewPosition(currentPosition, direction) {
+   getPlayerNewPosition(position, direction) {
       const size = this.boardSize
 
-      const directions = {
-         up: currentPosition >= size ? currentPosition - size : false,
-         down: currentPosition < size * (size - 1) ? currentPosition + size : false,
-         left: currentPosition % size !== 0 ? currentPosition - 1 : false,
-         right: currentPosition % size !== size - 1 ? currentPosition + 1 : false,
+      const newPositions = {
+         up: position >= size ? position - size : false,
+         down: position < size * (size - 1) ? position + size : false,
+         left: position % size !== 0 ? position - 1 : false,
+         right: position % size !== size - 1 ? position + 1 : false,
       }
 
-      return directions[direction] ?? false
+      return newPositions[direction] ?? false
+   }
+
+   getReverseDiretion(direction) {
+      const reverseDirections = {
+         up: 'down',
+         down: 'up',
+         left: 'right',
+         right: 'left',
+      }
+
+      return reverseDirections[direction]
    }
 
    setWinner(player) {

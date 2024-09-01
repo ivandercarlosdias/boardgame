@@ -13,7 +13,7 @@
    <div class="flex justify-center items-center">
       <div x-bind:class="`grid grid-cols-6 gap-1`" x-bind:style="{ width: boardSize * 4 + 'rem', height: boardSize * 4 + 'rem' }">
          <template x-for="(value, index) in Array.from({ length: boardSize * boardSize })" :key="index">
-            <div class="board__cell" x-bind:class="handleBoardCellClasses(index)"></div>
+            <div class="board-cell" x-bind:class="handleBoardCellClasses(index)"></div>
          </template>
       </div>
    </div>
