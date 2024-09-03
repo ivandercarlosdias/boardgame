@@ -7,7 +7,7 @@ body {
 }
 
 .board-cell {
-   @apply relative flex justify-center items-center w-full h-full bg-white border-2 border-gray-300;
+   @apply relative flex justify-center items-center w-full h-full min-w-14 min-h-14 bg-white border-2 border-gray-300;
 }
 
 .board-wall--up {
