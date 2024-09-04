@@ -31,7 +31,7 @@ body {
 }
 
 .player-target {
-   @apply after:block after:absolute after:content-[''] after:z-0 after:w-4 after:h-4 after:bg-gray-200 after:rounded-full;
+   @apply after:block after:absolute after:content-[''] after:z-0 after:w-6 after:h-6 after:bg-gray-200 after:rounded-md;
 }
 
 .player--1 {

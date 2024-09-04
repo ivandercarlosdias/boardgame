@@ -1,3 +1,8 @@
+// Init
+document.addEventListener('alpine:init', () => {
+   Alpine.data('app', () => new BoardGame())
+})
+
 class BoardGame {
    constructor() {
       this.boardSize = 6
@@ -35,7 +40,9 @@ class BoardGame {
       this.players.forEach((player, i) => {
          if (index === player.position) {
             classes += ` player--${i + 1}`
-         } else if (index === player.targetPosition) {
+         }
+
+         if (index === player.targetPosition) {
             classes += ` player-target--${i + 1}`
          }
       })
@@ -115,7 +122,3 @@ class BoardGame {
       console.warn(`${player.name} venceu o jogo! 🎊`)
    }
 }
-
-document.addEventListener('alpine:init', () => {
-   Alpine.data('app', () => new BoardGame())
-})
