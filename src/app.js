@@ -1,3 +1,8 @@
+// Darkmode
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+   document.documentElement.classList.add('dark')
+}
+
 // Init
 document.addEventListener('alpine:init', () => {
    Alpine.data('app', () => new BoardGame())
