@@ -27,7 +27,11 @@ body {
 }
 
 .player {
-   @apply before:block before:absolute before:content-[''] before:w-4 before:h-4 before:rounded-full;
+   @apply before:block before:absolute before:z-10 before:content-[''] before:w-4 before:h-4 before:bg-gray-500 before:rounded-full;
+}
+
+.player-target {
+   @apply after:block after:absolute after:content-[''] after:z-0 after:w-4 after:h-4 after:bg-gray-200 after:rounded-full;
 }
 
 .player--1 {
@@ -35,7 +39,7 @@ body {
 }
 
 .player-target--1 {
-   @apply player before:bg-red-200;
+   @apply player-target after:bg-red-200;
 }
 
 .player--2 {
@@ -43,5 +47,5 @@ body {
 }
 
 .player-target--2 {
-   @apply player before:bg-blue-200;
+   @apply player-target after:bg-blue-200;
 }
